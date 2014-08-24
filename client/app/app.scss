@@ -1,0 +1,138 @@
+
+$fa-font-path: "/bower_components/font-awesome/fonts";
+
+@import 'font-awesome/scss/font-awesome';
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,900);
+
+/**
+ * App-wide Styles
+ */
+
+$team1-color: #00f;
+$team2-color: #f00;
+$dark-color: #222;
+$dark-color-lighter: lighten($dark-color, 3%);
+$dark-color-lightest: lighten($dark-color, 6%);
+$light-color: #fff;
+$light-color-darker: darken($light-color, 2%);
+$primary-color: #ff9900;
+$font-stack: 'Roboto', sans-serif;
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+html,
+body{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-family: $font-stack;
+}
+
+.btn{
+    text-transform: uppercase;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
+    padding: 10px 20px;
+    border-radius: 1px;
+}
+.btn-primary{
+    color: $light-color;
+    background: $primary-color;
+}
+
+.dialog{
+    $dialog-size: 300px;
+    position: absolute;
+    left: 50%;
+    width: $dialog-size;
+    height: $dialog-size;
+    margin: -$dialog-size / 2;
+    opacity: 0;
+    top: -50%;
+    transition: all 250ms ease-in-out;
+    z-index: 1000;
+
+    &.active{
+        opacity: 1;
+        top: 50%;
+    }
+
+    &::before{
+        content: attr(title);
+        position: absolute;
+        top: -1.5em;
+        left: 0;
+        font-size: 2.5em;
+        font-weight: 100;
+        white-space: nowrap;
+    }
+}
+.dialog-content{
+    box-sizing: border-box;
+    background: $dark-color-lighter;
+    border: 2px solid $dark-color-lightest;
+    position: relative;
+    z-index: 1002;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+}
+.dialog-footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    z-index: 1001;
+
+    .btn{
+        position: absolute;
+        top: 0;
+    }
+}
+.dialog-close{
+    background: $primary-color;
+    color: $light-color;
+    right: 0;
+    width: 50%;
+    font-size: 1em;
+    transition: all 300ms ease-in-out;
+
+    &:disabled{
+        top: -50px;
+        opacity: 0.5;
+        transition-duration: 0;
+    }
+}
+
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+    user-select: none;
+}
+
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 730px;
+    }
+}
+
+// Component styles are injected through grunt
+// injector
+@import 'goal/goal.scss';
+@import 'main/main.scss';
+@import 'match/match.scss';
+@import 'player/player.scss';
+@import 'timerCircle/timerCircle.scss';
+// endinjector

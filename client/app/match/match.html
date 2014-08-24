@@ -1,0 +1,63 @@
+<div class="match-wrapper">
+	<div class="match-background">
+		<div class="team-1 background-team-side"></div>
+		<div class="team-2 background-team-side"></div>
+	</div>
+	<section class="match">
+		<div class="match-info">
+			<div class="match-score-wrapper">
+				{{ score | formatScore }}
+			</div>
+			<div class="match-timer-wrapper">
+				<time class="match-timer">{{ timer | formatTime }}</time>
+			</div>
+		</div>
+		<div class="match-btn-action-wrapper">
+			<button class="match-btn-action" ng-click="dispatchAction()">
+				<span class="match-btn-action-content" ng-class="{'active': buttonActionActive}">{{ buttonActionText }}</span>
+				<div class="match-btn-timer" data-timer-circle="timer"></div>
+			</button>
+		</div>
+		<div class="match-teams">
+			<div class="match-team match-team1">
+				<div class="match-player match-player-offence" data-player="players[0]" data-drop-player="handleDropPlayer" data-drop-goal="handleDropGoal"	>
+				</div>
+				<div class="match-player match-player-defence" data-player="players[1]" data-drop-player="handleDropPlayer" data-drop-goal="handleDropGoal">
+				</div>
+			</div>
+			<div class="match-team match-team2">
+				<div class="match-player match-player-offence" data-player="players[2]" data-drop-player="handleDropPlayer" data-drop-goal="handleDropGoal">
+				</div>
+				<div class="match-player match-player-defence" data-player="players[3]" data-drop-player="handleDropPlayer" data-drop-goal="handleDropGoal">
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="dialog dialog-players" title="Select Teammates" ng-class="{'active': (matchStatus === 'choose-team')}">
+		<div class="dialog-content">
+			<ul class="players-list">
+				<li class="player-item" ng-repeat="player in playersList" ng-show="!player.selected">
+					<div data-player="player" data-selected-player="currentlySelectedPlayer"></div>
+				</li>
+			</ul>
+		</div>
+		<footer class="dialog-footer">
+			<button class="dialog-close btn" ng-click="dispatchAction()" ng-disabled="!teamsCreated">Close</button>
+		</footer>
+	</section>
+	<section class="dialog dialog-goals" title="New Goal" ng-class="{'active': goalDialog}">
+		<div class="dialog-content">
+			<ul class="goals-list">
+				<li class="goal-item" ng-repeat="goal in goalTypesList">
+					<div data-goal="goal"></div>
+				</li>
+				<li class="goal-item against-the-team">
+					<div data-goal="'Against the team'" data-goal-against-team="true"></div>
+				</li>
+			</ul>
+		</div>
+		<footer class="dialog-footer">
+			<button class="dialog-close btn" ng-click="goalDialog = false">Close</button>
+		</footer>
+	</section>
+</div>

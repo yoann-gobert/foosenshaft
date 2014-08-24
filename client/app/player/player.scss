@@ -1,0 +1,12 @@
+.player{
+	&.dragging{
+		opacity: 0.2;
+	}
+}
+.player-name,
+.player-position{
+	margin: 0;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
