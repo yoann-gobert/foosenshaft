@@ -145,9 +145,7 @@ body{
 
 // Component styles are injected through grunt
 // injector
-@import 'goal/goal.scss';
 @import 'main/main.scss';
 @import 'match/match.scss';
-@import 'player/player.scss';
 @import 'timerCircle/timerCircle.scss';
 // endinjector
