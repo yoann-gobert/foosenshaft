@@ -145,10 +145,21 @@ $team-spacing: 10px;
 	font-size: 2em;
 	font-weight: 100;
 
+	.player{
+		position: absolute;
+		width: 100%;
+		height: 60px;
+	}
 	.player-name,
 	.player-position{
 		position: absolute;
 		width: 100%;
+	}
+	.player-name{
+		top: 0;
+	}
+	.player-position{
+		bottom: 0;
 	}
 
 	&.drag-enter{
@@ -160,9 +171,6 @@ $team-spacing: 10px;
 	font-size: 0.5em;
 }
 
-$positionLabelName: 0.7em;
-$positionLabelPosition: 3em;
-
 .match-team1{
 	left: $team-spacing;
 	text-align: left;
@@ -173,22 +181,16 @@ $positionLabelPosition: 3em;
 	.match-player-offence{
 		bottom: $team-spacing;
 
-		.player-name{
-			bottom: $positionLabelName;
-		}
-		.player-position{
+		.player{
 			bottom: 0;
 		}
 	}
 
-	.match-player-defence{
+	.match-player-defense{
 		top: $team-spacing;
 
-		.player-name{
+		.player{
 			top: 0;
-		}
-		.player-position{
-			top: $positionLabelPosition;
 		}
 	}
 }
@@ -202,21 +204,15 @@ $positionLabelPosition: 3em;
 	.match-player-offence{
 		top: $team-spacing;
 
-		.player-name{
+		.player{
 			top: 0;
-		}
-		.player-position{
-			top: $positionLabelPosition;
 		}
 	}
 
-	.match-player-defence{
+	.match-player-defense{
 		bottom: $team-spacing;
 
-		.player-name{
-			bottom: $positionLabelName;
-		}
-		.player-position{
+		.player{
 			bottom: 0;
 		}
 	}
@@ -231,7 +227,7 @@ $positionLabelPosition: 3em;
 	margin: 0;
 	list-style: none;
 }
-.player-item{
+.player-item .player{
 	padding: 10px;
 	font-size: 1.5em;
 	font-weight: 100;

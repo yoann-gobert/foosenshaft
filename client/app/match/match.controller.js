@@ -36,6 +36,7 @@ angular.module('foosenshaftApp')
 
         for (var i = 0; i < playersList.length; i++) {
             var player = {
+                type: 'playerList',
                 name: playersList[i],
                 slug: slugify(playersList[i]),
                 selected: false
@@ -57,6 +58,7 @@ angular.module('foosenshaftApp')
     }
     function createPlayer(position, team){
         return {
+            type: 'player',
             name: '',
             slug: '',
             position: position,
@@ -149,34 +151,7 @@ angular.module('foosenshaftApp')
         }
     };
 
-    function checkTeamsComposition(){
-        var playersSet = 0;
-        for (var i = 0; i < $scope.players.length; i++) {
-            if($scope.players[i].slug){
-                playersSet ++;
-            }
-        }
-        if(playersSet === $scope.players.length){
-            $scope.teamsCreated = true;
-        }else{
-            $scope.teamsCreated = false;
-        }
-    }
-    function updatePlayersList(){
-        //update the players list
-        var indexPlayerList;
-        for (indexPlayerList in $scope.playersList) {
-            if ($scope.playersList.hasOwnProperty(indexPlayerList)) {
-                $scope.playersList[indexPlayerList].selected = false;
-            }
-        }
-        //hide the selected players
-        for (var i = 0; i < $scope.players.length; i++) {
-            if( $scope.playersList.hasOwnProperty($scope.players[i].slug) ){
-                $scope.playersList[$scope.players[i].slug].selected = true;
-            }
-        }
-    }
+
     function handleDropChooseTeam(currentPlayer, selectedPlayer){
         //check if there is already a current player at the spot
         //if yes then swap it
@@ -233,26 +208,6 @@ angular.module('foosenshaftApp')
         }
     }
 
-
-    $scope.handleDropPlayer = function(currentPlayer, selectedPlayer){
-
-        switch ($scope.matchStatus) {
-        case 'choose-team':
-            handleDropChooseTeam(currentPlayer, selectedPlayer);
-            //update the players list
-            updatePlayersList();
-            //check if the teams are created
-            checkTeamsComposition();
-            break;
-        case 'started':
-            handleTeamSwap(currentPlayer, selectedPlayer);
-            break;
-
-        }
-
-        $scope.$apply();
-    };
-
     function updateGoals(playerTeam, goalValue){
 
         //set the team index
@@ -303,6 +258,25 @@ angular.module('foosenshaftApp')
         }
     }
 
+    $scope.handleDropPlayer = function(currentPlayer, selectedPlayer){
+
+        switch ($scope.matchStatus) {
+        case 'choose-team':
+            handleDropChooseTeam(currentPlayer, selectedPlayer);
+            //update the players list
+            updatePlayersList();
+            //check if the teams are created
+            checkTeamsComposition();
+            break;
+        case 'started':
+            handleTeamSwap(currentPlayer, selectedPlayer);
+            break;
+
+        }
+
+        //$scope.$apply();
+    };
+
     $scope.handleDropGoal = function(currentPlayer, goal){
         //close the goal dialog
         $scope.goalDialog = false;
@@ -313,7 +287,97 @@ angular.module('foosenshaftApp')
         //check the end of the match
         checkMatchEnd();
 
-        $scope.$apply();
+        //$scope.$apply();
+    };
+
+    function updatePlayersList(){
+        //update the players list
+        var indexPlayerList;
+        for (indexPlayerList in $scope.playersList) {
+            if ($scope.playersList.hasOwnProperty(indexPlayerList)) {
+                $scope.playersList[indexPlayerList].selected = false;
+            }
+        }
+        //hide the selected players
+        for (var i = 0; i < $scope.players.length; i++) {
+            if( $scope.playersList.hasOwnProperty($scope.players[i].slug) ){
+                $scope.playersList[$scope.players[i].slug].selected = true;
+            }
+        }
+    }
+    function populateNewPlayer(toPlayer, fromPlayer){
+        toPlayer.slug = fromPlayer.slug;
+        toPlayer.name = fromPlayer.name;
+    }
+    function swapPlayer(player, newPlayer){
+        //copy the new player's data
+        var newPlayerDataCopy = {};
+        populateNewPlayer(newPlayerDataCopy, newPlayer);
+
+        //find the original player and populate it with the data
+        //from the target player
+        for (var i = 0; i < $scope.players.length; i++) {
+            if($scope.players[i].slug !== '' && newPlayer.slug === $scope.players[i].slug){
+                populateNewPlayer($scope.players[i], player);
+            }
+        }
+
+        populateNewPlayer(player, newPlayerDataCopy);
+    }
+    function checkTeamsComposition(){
+        var playersSet = 0;
+        for (var i = 0; i < $scope.players.length; i++) {
+            if($scope.players[i].slug){
+                playersSet ++;
+            }
+        }
+        if(playersSet === $scope.players.length){
+            $scope.teamsCreated = true;
+        }else{
+            $scope.teamsCreated = false;
+        }
+    }
+
+    function onDropCompleteChooseTeam(player, data){
+        if('type' in data){
+            switch (data.type) {
+            case 'playerList':
+                //initialise the player from the list
+                populateNewPlayer(player, data);
+                //update the players list
+                updatePlayersList();
+                break;
+            case 'player':
+                //swap the player
+                swapPlayer(player, data);
+                break;
+            }
+
+            //check if the teams are created
+            checkTeamsComposition();
+        }
+    }
+
+    function onDropComplete(player, data){
+        switch ($scope.matchStatus) {
+        case 'choose-team':
+            onDropCompleteChooseTeam(player, data);
+            break;
+
+        }
+    }
+
+    $scope.onDropCompletePlayer0 = function(data, event){
+        onDropComplete($scope.players[0], data, event)
+    };
+    $scope.onDropCompletePlayer1 = function(data, event){
+        onDropComplete($scope.players[1], data, event)
+    };
+    $scope.onDropCompletePlayer2 = function(data, event){
+        onDropComplete($scope.players[2], data, event)
+    };
+    $scope.onDropCompletePlayer3 = function(data, event){
+        onDropComplete($scope.players[3], data, event)
     };
 
     //initialise the match

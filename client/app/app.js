@@ -6,7 +6,8 @@ angular.module('foosenshaftApp', [
     'ngSanitize',
     'ngRoute',
     'btford.socket-io',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngDraggable'
 ])
 .config(function ($routeProvider, $locationProvider) {
     $routeProvider

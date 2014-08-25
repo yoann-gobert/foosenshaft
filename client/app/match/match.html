@@ -20,15 +20,31 @@
 		</div>
 		<div class="match-teams">
 			<div class="match-team match-team1">
-				<div class="match-player match-player-offence" data-player="players[0]" data-drop-player="handleDropPlayer" data-drop-goal="handleDropGoal"	>
+				<div class="match-player match-player-offence" ng-drop="true" ng-drop-success="onDropCompletePlayer0($data,$event)">
+					<div class="player" ng-drag="true" ng-drag-data="players[0]">
+						<p class="player-name">{{ players[0].name }}</p>
+						<p class="player-position">{{ players[0].position }}</p>
+					</div>
 				</div>
-				<div class="match-player match-player-defence" data-player="players[1]" data-drop-player="handleDropPlayer" data-drop-goal="handleDropGoal">
+				<div class="match-player match-player-defense" ng-drop="true" ng-drop-success="onDropCompletePlayer1($data,$event)">
+					<div class="player" ng-drag="true" ng-drag-data="players[1]">
+						<p class="player-name">{{ players[1].name }}</p>
+						<p class="player-position">{{ players[1].position }}</p>
+					</div>
 				</div>
 			</div>
 			<div class="match-team match-team2">
-				<div class="match-player match-player-offence" data-player="players[2]" data-drop-player="handleDropPlayer" data-drop-goal="handleDropGoal">
+				<div class="match-player match-player-offence" ng-drop="true" ng-drop-success="onDropCompletePlayer2($data,$event)">
+					<div class="player" ng-drag="true" ng-drag-data="players[2]">
+						<p class="player-name">{{ players[2].name }}</p>
+						<p class="player-position">{{ players[2].position }}</p>
+					</div>
 				</div>
-				<div class="match-player match-player-defence" data-player="players[3]" data-drop-player="handleDropPlayer" data-drop-goal="handleDropGoal">
+				<div class="match-player match-player-defense" ng-drop="true" ng-drop-success="onDropCompletePlayer3($data,$event)">
+					<div class="player" ng-drag="true" ng-drag-data="players[3]">
+						<p class="player-name">{{ players[3].name }}</p>
+						<p class="player-position">{{ players[3].position }}</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -37,7 +53,9 @@
 		<div class="dialog-content">
 			<ul class="players-list">
 				<li class="player-item" ng-repeat="player in playersList" ng-show="!player.selected">
-					<div data-player="player" data-selected-player="currentlySelectedPlayer"></div>
+					<div class="player" ng-drag="true" ng-drag-data="player">
+						{{ player.name }}
+					</div>
 				</li>
 			</ul>
 		</div>
