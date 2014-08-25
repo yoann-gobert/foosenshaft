@@ -116,8 +116,23 @@ body{
 }
 
 /* Prevent the text contents of draggable elements from being selectable. */
-[draggable] {
+[ng-drag]{
     user-select: none;
+}
+[ng-drag]{
+    cursor: move;
+}
+[ng-drag].drag-over{
+    border:solid 1px red;
+}
+[ng-drag].dragging{
+    opacity: 0.5;
+}
+[ng-drop]{
+    border: dashed 2px transparent;
+    &.drag-enter{
+        border-color: $primary-color;
+    }
 }
 
 
