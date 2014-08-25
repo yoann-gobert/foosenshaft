@@ -22,6 +22,10 @@ angular.module('foosenshaftApp')
         },{
             type: 'goal',
             value: 1,
+            name: 'Service'
+        },{
+            type: 'goal',
+            value: 1,
             name: 'Slow ball'
         },{
             type: 'goal',
