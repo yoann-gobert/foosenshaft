@@ -67,10 +67,10 @@
 		<div class="dialog-content">
 			<ul class="goals-list">
 				<li class="goal-item" ng-repeat="goal in goalTypesList">
-					<div data-goal="goal"></div>
+					<div ng-drag="true" ng-drag-data="goal">{{ goal.name }}</div>
 				</li>
 				<li class="goal-item against-the-team">
-					<div data-goal="'Against the team'" data-goal-against-team="true"></div>
+					<div ng-drag="true" ng-drag-data="goalAgainstTheTeam">{{ goalAgainstTheTeam.name }}</div>
 				</li>
 			</ul>
 		</div>

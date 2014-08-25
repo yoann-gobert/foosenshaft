@@ -15,11 +15,29 @@ angular.module('foosenshaftApp')
         'Yoann G.',
     ];
     $scope.goalTypesList = [
-        'Regular',
-        'Slow ball',
-        'Lucky',
-        'Foosenshaft'
+        {
+            type: 'goal',
+            value: 1,
+            name: 'Regular'
+        },{
+            type: 'goal',
+            value: 1,
+            name: 'Slow ball'
+        },{
+            type: 'goal',
+            value: 1,
+            name: 'Lucky'
+        },{
+            type: 'goal',
+            value: 1,
+            name: 'Foosenshaft'
+        }
     ];
+    $scope.goalAgainstTheTeam = {
+        type: 'goal',
+        value: -1,
+        name: 'Against the team'
+    };
     $scope.timer = 0;
 
     function millisecondsToSeconds(milliseconds){
@@ -151,61 +169,14 @@ angular.module('foosenshaftApp')
         }
     };
 
-
-    function handleDropChooseTeam(currentPlayer, selectedPlayer){
-        //check if there is already a current player at the spot
-        //if yes then swap it
-        if(currentPlayer.slug){
-            for (var i = 0; i < $scope.players.length; i++) {
-                if($scope.players[i].slug === selectedPlayer.slug){
-                    $scope.players[i].name = currentPlayer.name;
-                    $scope.players[i].slug = currentPlayer.slug;
-                }
-            }
-        }else{
-            //manage the case of moving player from a position to an empty
-            for (var i = 0; i < $scope.players.length; i++) {
-                if($scope.players[i].slug === selectedPlayer.slug){
-                    $scope.players[i].name = null;
-                    $scope.players[i].slug = null;
-                }
-            }
-        }
-
-        //set the player's data
-        currentPlayer.name = selectedPlayer.name;
-        currentPlayer.slug = selectedPlayer.slug;
-    }
     function addSwapDataToMatch(teamIndex){
-
         var swap = {
             type: 'swap',
             team: {
                 index: teamIndex
             }
         };
-
         addMatchData(swap);
-    }
-    function handleTeamSwap(currentPlayer, selectedPlayer){
-        //perform the swap only if this is the the same player and the players are from the same team
-        if(currentPlayer.slug !== selectedPlayer.slug && selectedPlayer.team === currentPlayer.team){
-            for (var i = 0; i < $scope.players.length; i++) {
-                //find the player in the array of players and swap them
-                if($scope.players[i].slug === selectedPlayer.slug){
-
-                    $scope.players[i].name = currentPlayer.name;
-                    $scope.players[i].slug = currentPlayer.slug;
-
-                    currentPlayer.name = selectedPlayer.name;
-                    currentPlayer.slug = selectedPlayer.slug;
-
-                    //add the swap data
-                    addSwapDataToMatch(currentPlayer.team);
-
-                }
-            }
-        }
     }
 
     function updateGoals(playerTeam, goalValue){
@@ -257,38 +228,6 @@ angular.module('foosenshaftApp')
             actionEndMatch();
         }
     }
-
-    $scope.handleDropPlayer = function(currentPlayer, selectedPlayer){
-
-        switch ($scope.matchStatus) {
-        case 'choose-team':
-            handleDropChooseTeam(currentPlayer, selectedPlayer);
-            //update the players list
-            updatePlayersList();
-            //check if the teams are created
-            checkTeamsComposition();
-            break;
-        case 'started':
-            handleTeamSwap(currentPlayer, selectedPlayer);
-            break;
-
-        }
-
-        //$scope.$apply();
-    };
-
-    $scope.handleDropGoal = function(currentPlayer, goal){
-        //close the goal dialog
-        $scope.goalDialog = false;
-        //add the data to the match
-        addGoalDataToMatch(currentPlayer, goal);
-        //update the goals
-        updateGoals(currentPlayer.team, goal.value);
-        //check the end of the match
-        checkMatchEnd();
-
-        //$scope.$apply();
-    };
 
     function updatePlayersList(){
         //update the players list
@@ -358,10 +297,44 @@ angular.module('foosenshaftApp')
         }
     }
 
+    function scoreGoal(player, data){
+        $scope.goalDialog = false;
+        //add the data to the match
+        addGoalDataToMatch(player, data);
+        //update the goals
+        updateGoals(player.team, data.value);
+        //check the end of the match
+        checkMatchEnd();
+    }
+
+    function onDropCompleteMatchStarted(player, data){
+        if('type' in data){
+            switch (data.type) {
+            case 'goal':
+                scoreGoal(player, data);
+                break;
+            case 'player':
+                //swap the player
+                if(player.team === data.team){
+                    //add the swap data
+                    addSwapDataToMatch(player.team);
+                    swapPlayer(player, data);
+                }
+                break;
+            }
+
+            //check if the teams are created
+            checkTeamsComposition();
+        }
+    }
+
     function onDropComplete(player, data){
         switch ($scope.matchStatus) {
         case 'choose-team':
             onDropCompleteChooseTeam(player, data);
+            break;
+        case 'started':
+            onDropCompleteMatchStarted(player, data);
             break;
 
         }
