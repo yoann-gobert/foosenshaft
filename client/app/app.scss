@@ -122,9 +122,6 @@ body{
 [ng-drag]{
     cursor: move;
 }
-[ng-drag].drag-over{
-    border:solid 1px red;
-}
 [ng-drag].dragging{
     opacity: 0.5;
 }
