@@ -6,11 +6,9 @@ Schema = mongoose.Schema;
 var MatchSchema = new Schema({
     name: String,
     timestamp: Number,
-    players: Array,
-    score: Array,
-    timer: Number,
-    data: Array
-
+    players: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    score: [Number],
+    time: Number
 });
 
 module.exports = mongoose.model('Match', MatchSchema);
