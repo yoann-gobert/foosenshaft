@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('foosenshaftApp')
-.controller('MainCtrl', function ($scope, $http, socket, localStorage) {
+.controller('MainCtrl', function ($scope, $http, socket, navbar, localStorage) {
+
+    navbar.setTitle('Foosenshaft');
+
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {

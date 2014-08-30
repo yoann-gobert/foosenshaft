@@ -5,9 +5,9 @@ angular.module('foosenshaftApp', [
     'ngResource',
     'ngSanitize',
     'ngRoute',
+    'ngAnimate',
     'btford.socket-io',
-    'ui.bootstrap',
-    'ngDraggable'
+    'ui.bootstrap'
 ])
 .config(function ($routeProvider, $locationProvider) {
     $routeProvider

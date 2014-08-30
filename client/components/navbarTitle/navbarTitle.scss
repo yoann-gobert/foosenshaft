@@ -1,0 +1,38 @@
+.navbarTitle-wrapper{
+	position: relative;
+	overflow: hidden;
+	height: $navbar-height;
+}
+.navbarTitle{
+	position: absolute;
+	font-weight: normal;
+	top: 0;
+	left: 0;
+	line-height: $navbar-height;
+	font-size: 1em;
+	margin: 0;
+	opacity: 1;
+
+	&.ng-enter,
+	&.ng-leave {
+		transition:all ease-in-out 300ms;
+	}
+
+	&.ng-leave{
+		opacity: 1;
+		top: 0;
+	}
+	&.ng-leave.ng-leave-active{
+		opacity: 0;
+		top: $navbar-height;
+	}
+	&.ng-enter {
+		opacity: 0;
+		top: -$navbar-height;
+	}
+	&.ng-enter.ng-enter-active {
+		opacity: 1;
+		top: 0px;
+	}
+
+}

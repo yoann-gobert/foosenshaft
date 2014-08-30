@@ -27,9 +27,9 @@
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    <div ng-include="'components/navbar/navbar.html'"></div>
     <!-- Add your site or application content here -->
-    <div ng-view=""></div>
+    <div ng-view="" class="views-container"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -59,7 +59,7 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/angular-socket-io/socket.js"></script>
-    <script src="bower_components/ngDraggable/ngDraggable.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -67,14 +67,14 @@
     <script src="app/app.js"></script>
     <!-- injector:js -->
     <script src="app/formatScore/formatScore.filter.js"></script>
-    <script src="app/formatTime/formatTime.filter.js"></script>
     <script src="app/localStorage/localStorage.service.js"></script>
     <script src="app/main/main.controller.js"></script>
     <script src="app/main/main.js"></script>
-    <script src="app/match/match.controller.js"></script>
-    <script src="app/match/match.js"></script>
-    <script src="app/timerCircle/timerCircle.directive.js"></script>
+    <script src="app/new-match/new-match.controller.js"></script>
+    <script src="app/new-match/new-match.js"></script>
     <script src="components/navbar/navbar.controller.js"></script>
+    <script src="components/navbar/navbar.service.js"></script>
+    <script src="components/navbarTitle/navbarTitle.directive.js"></script>
     <script src="components/socket/socket.service.js"></script>
     <!-- endinjector -->
     <!-- endbuild -->

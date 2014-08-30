@@ -3,11 +3,11 @@
 angular.module('foosenshaftApp')
 .service('localStorage', function () {
     //Check if the local storage is available and if not, use cookies
-    //souce: https://developer.mozilla.org/en/docs/Web/Guide/API/DOM/Storage
+    //source: https://developer.mozilla.org/en/docs/Web/Guide/API/DOM/Storage
     if (!window.localStorage) {
-        Object.defineProperty(window, "localStorage", new (function () {
+        Object.defineProperty(window, 'localStorage', (function () {
             var aKeys = [], oStorage = {};
-            Object.defineProperty(oStorage, "getItem", {
+            Object.defineProperty(oStorage, 'getItem', {
                 value: function (sKey) {
                     return sKey ? this[sKey] : null;
                 },
@@ -15,7 +15,7 @@ angular.module('foosenshaftApp')
                 configurable: false,
                 enumerable: false
             });
-            Object.defineProperty(oStorage, "key", {
+            Object.defineProperty(oStorage, 'key', {
                 value: function (nKeyId) {
                     return aKeys[nKeyId];
                 },
@@ -23,30 +23,30 @@ angular.module('foosenshaftApp')
                 configurable: false,
                 enumerable: false
             });
-            Object.defineProperty(oStorage, "setItem", {
+            Object.defineProperty(oStorage, 'setItem', {
                 value: function (sKey, sValue) {
                     if(!sKey) {
                         return;
                     }
-                    document.cookie = escape(sKey) + "=" + escape(sValue) + "; expires=Tue, 19 Jan 2038 03:14:07 GMT; path=/";
+                    document.cookie = escape(sKey) + '=' + escape(sValue) + '; expires=Tue, 19 Jan 2038 03:14:07 GMT; path=/';
                 },
                 writable: false,
                 configurable: false,
                 enumerable: false
             });
-            Object.defineProperty(oStorage, "length", {
+            Object.defineProperty(oStorage, 'length', {
                 get: function () {
                     return aKeys.length;
                 },
                 configurable: false,
                 enumerable: false
             });
-            Object.defineProperty(oStorage, "removeItem", {
+            Object.defineProperty(oStorage, 'removeItem', {
                 value: function (sKey) {
                     if(!sKey) {
                         return;
                     }
-                    document.cookie = escape(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+                    document.cookie = escape(sKey) + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
                 },
                 writable: false,
                 configurable: false,
@@ -93,7 +93,7 @@ angular.module('foosenshaftApp')
 
     this.setItem = function(key, value){
         var data = value;
-        if(typeof value === 'object' || typeof value === 'array'){
+        if(typeof(value) === 'object' || typeof(value) === 'array'){
             data = JSON.stringify(value);
         }
         return localStorage.setItem(key, data);
