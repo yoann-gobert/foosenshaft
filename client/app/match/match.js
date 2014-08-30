@@ -3,8 +3,9 @@
 angular.module('foosenshaftApp')
 .config(function ($routeProvider) {
     $routeProvider
-    .when('/', {
+    .when('/match', {
         templateUrl: 'app/match/match.html',
-        controller: 'MatchCtrl'
+        controller: 'MatchCtrl',
+        controllerAs: 'match'
     });
 });

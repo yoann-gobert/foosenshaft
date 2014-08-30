@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('foosenshaftApp')
-.controller('MainCtrl', function ($scope, $http, socket) {
+.controller('MainCtrl', function ($scope, $http, socket, localStorage) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
@@ -24,4 +24,11 @@ angular.module('foosenshaftApp')
     $scope.$on('$destroy', function () {
         socket.unsyncUpdates('thing');
     });
+
+    if(localStorage.getItem('user')){
+        this.user = localStorage.getItem('user');
+    }else{
+        this.user = {};
+    }
+
 });

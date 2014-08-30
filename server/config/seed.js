@@ -64,7 +64,7 @@ User.find({}).remove(function() {
     },{
         name : {
             first: 'Jingjin',
-            last: 'han'
+            last: 'Han'
         },
         email : 'jj@frankdigital.com.au'
     },{
