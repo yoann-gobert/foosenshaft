@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('foosenshaftApp')
-.controller('NavbarCtrl', function ($rootScope, $scope, $window, $timeout, navbar) {
+.controller('NavbarCtrl', function ($rootScope, $scope, $window, $timeout, navbar, sidePanel) {
 
     this.showBackButton = navbar.getShowBackButton();
     $rootScope.$on('showBackButton', function(){
@@ -23,7 +23,9 @@ angular.module('foosenshaftApp')
     };
 
     $scope.navbarAction = function(action){
-        console.log(action);
+        sidePanel.setPanel(action);
+        sidePanel.openPanel();
     };
+
 
 });

@@ -27,9 +27,27 @@
     <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div ng-include="'components/navbar/navbar.html'"></div>
-    <!-- Add your site or application content here -->
-    <div ng-view="" class="views-container"></div>
+    <div class="main-wrapper" ng-class="{'side-panel-open': sidePanelOpen}">
+        <div class="main-panel">
+            <div ng-include="'components/navbar/navbar.html'"></div>
+            <div ng-view="" class="views-container"></div>
+        </div>
+        <div class="side-panel-wrapper">
+            <section class="side-panel" ng-controller="SidePanelCtrl">
+                <header class="side-panel-header">
+                    <div class="side-panel-close-wrapper">
+                        <button class="btn" ng-click="closePanel()" title="Close Panel">
+                            <span class="fa fa-times"></span>
+                        </button>
+                    </div>
+                    <h2 class="side-panel-title">{{ panelData.title }}</h2>
+                </header>
+                <div class="content-side-panel">
+                    <div ng-include="'app/profile/profile.html'" ng-show="panelData.panel === 'profile'"></div>
+                </div>
+            </section>
+        </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -72,6 +90,9 @@
     <script src="app/main/main.js"></script>
     <script src="app/new-match/new-match.controller.js"></script>
     <script src="app/new-match/new-match.js"></script>
+    <script src="app/profile/profile.controller.js"></script>
+    <script src="app/side-panel/side-panel.controller.js"></script>
+    <script src="app/side-panel/side-panel.service.js"></script>
     <script src="components/navbar/navbar.controller.js"></script>
     <script src="components/navbar/navbar.service.js"></script>
     <script src="components/navbarTitle/navbarTitle.directive.js"></script>
