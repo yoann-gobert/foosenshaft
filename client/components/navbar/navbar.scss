@@ -1,10 +1,17 @@
 $navbar-left-space: $navbar-height;
+$button-width: $navbar-height/4*3;
 .navbar{
 	background: $primary-color-dark;
 	color: #fff;
 	height: $navbar-height;
 	position: relative;
 	z-index: 100;
+
+	.btn{
+		display: block;
+		width: $button-width;
+		padding: 5px 0;
+	}
 }
 .navbar-container{
 	display: table;
@@ -14,9 +21,10 @@ $navbar-left-space: $navbar-height;
 .navbar-left-container{
 	display: table-cell;
 	vertical-align: middle;
-	min-width: $navbar-left-space;
-	width: $navbar-left-space;
-	max-width: $navbar-left-space;
+	padding: 0 10px;
+	min-width: $button-width;
+	width: $button-width;
+	max-width: $button-width;
 }
 .back-button{
 	display: block;
@@ -47,6 +55,50 @@ $navbar-left-space: $navbar-height;
 	}
 }
 
+.navbar-header,
+.navbar-right-container{
+	vertical-align: middle;
+	display: table-cell;
+}
+.navbar-right-container{
+	padding: 0 10px;
+
+	text-align: right;
+	.btn-container{
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		text-align: center;
+		width: $button-width;
+
+		&.ng-enter,
+		&.ng-leave {
+			transition: $regular-transition;
+		}
+
+		&.ng-leave{
+			opacity: 1;
+			width: $button-width;
+			transform: rotateY(0);
+		}
+		&.ng-leave.ng-leave-active{
+			opacity: 0;
+			width: 0;
+			transform: rotateY(90deg);
+		}
+		&.ng-enter {
+			opacity: 0;
+			width: 0;
+			transform: rotateY(-90deg);
+		}
+		&.ng-enter.ng-enter-active {
+			opacity: 1;
+			width: $button-width;
+			transform: rotateY(0);
+		}
+	}
+}
+
 //animation in the back case
 .back{
 	.back-button{
@@ -67,9 +119,4 @@ $navbar-left-space: $navbar-height;
 			transform: translate3d(0, 0, 0);
 		}
 	}
-}
-
-.navbar-header{
-	vertical-align: middle;
-	display: table-cell;
 }

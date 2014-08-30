@@ -6,4 +6,6 @@ angular.module('foosenshaftApp')
 
     navbar.setTitle('New Match');
     navbar.setShowBackButton(true);
+    navbar.setActionButtons([]);
+
 });

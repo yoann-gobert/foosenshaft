@@ -5,6 +5,7 @@ angular.module('foosenshaftApp')
 
     var title = 'Foosenshaft';
     var showBackButton = false;
+    var actionButtons = [];
 
     this.getTitle = function(){
         return title;
@@ -26,6 +27,15 @@ angular.module('foosenshaftApp')
             showBackButton = show;
             $rootScope.$emit('showBackButton');
         }
+    };
+
+    this.getActionButtons = function(){
+        return actionButtons;
+    };
+
+    this.setActionButtons = function(buttons){
+        actionButtons = buttons;
+        $rootScope.$emit('newActionButtons');
     };
 
 });

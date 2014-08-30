@@ -5,6 +5,15 @@ angular.module('foosenshaftApp')
 
     navbar.setTitle('Foosenshaft');
     navbar.setShowBackButton(false);
+    navbar.setActionButtons([{
+        title: 'Settings',
+        icon: 'fa-cog',
+        action: 'actionSettings'
+    },{
+        title: 'Profile',
+        icon: 'fa-bars',
+        action: 'actionProfile'
+    }]);
 
     $scope.awesomeThings = [];
 
