@@ -17,10 +17,10 @@ angular.module('foosenshaftApp')
                 panel: 'profile'
             }
             break;
-        case 'actionSettings':
+        case 'actionHelp':
             panelData = {
-                title: 'Settings',
-                panel: 'settings'
+                title: 'Help',
+                panel: 'help'
             }
             break;
         }

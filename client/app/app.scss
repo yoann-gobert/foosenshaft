@@ -77,6 +77,9 @@ body{
     font-size: 1em;
     vertical-align: middle;
 }
+.side-panel-title{
+    padding-left: 10px;
+}
 .side-panel-close-wrapper{
     $button-width: $navbar-height/4*3;
     padding: 0 10px;

@@ -6,9 +6,9 @@ angular.module('foosenshaftApp')
     navbar.setTitle('Foosenshaft');
     navbar.setShowBackButton(false);
     navbar.setActionButtons([{
-        title: 'Settings',
-        icon: 'fa-cog',
-        action: 'actionSettings'
+        title: 'Help',
+        icon: 'fa-question',
+        action: 'actionHelp'
     },{
         title: 'Profile',
         icon: 'fa-bars',
