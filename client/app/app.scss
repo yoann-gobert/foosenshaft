@@ -15,6 +15,7 @@ $primary-color-dark: #303f9f;
 $accent-color: #ff3d00;
 $font-stack: 'Roboto', sans-serif;
 $navbar-height: 40px;
+$regular-transition: all ease-in-out 300ms;
 
 .browsehappy {
     margin: 0.2em 0;
@@ -44,7 +45,7 @@ body{
 
     &.ng-enter,
     &.ng-leave {
-        transition:all ease-in-out 300ms;
+        transition: $regular-transition;
     }
 
     &.ng-leave{
@@ -60,8 +61,37 @@ body{
         transform: translate3d(0,0,0);
     }
 }
+.back{
+    .views-container{
+        &.ng-leave{
+            transform: translate3d(0,0,0);
+        }
+        &.ng-leave.ng-leave-active{
+            transform: translate3d(100%,0,0);
+        }
+        &.ng-enter {
+            transform: translate3d(-100%,0,0);
+        }
+        &.ng-enter.ng-enter-active {
+            transform: translate3d(0,0,0);
+        }
+    }
+}
 
+.btn{
+    box-sizing: border-box;
+    padding: 5px 10px;
+    margin: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    border-radius: 2px;
 
+    &:focus{
+        outline: none;
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

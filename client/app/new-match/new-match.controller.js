@@ -5,4 +5,5 @@ angular.module('foosenshaftApp')
     $scope.message = 'Hello';
 
     navbar.setTitle('New Match');
+    navbar.setShowBackButton(true);
 });

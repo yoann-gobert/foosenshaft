@@ -1,19 +1,21 @@
 'use strict';
 
 angular.module('foosenshaftApp')
-.controller('NavbarCtrl', function () {
+.controller('NavbarCtrl', function ($rootScope, $scope, $window, $timeout, navbar) {
 
-    /*
-    this.menu = [{
-        'title': 'Home',
-        'link': '/'
-    }];
+    this.showBackButton = navbar.getShowBackButton();
+    $rootScope.$on('showBackButton', function(){
+        $scope.showBackButton = navbar.getShowBackButton();
+    });
 
-    $scope.isCollapsed = true;
+    $scope.back = function(){
+        $rootScope.isBack = true;
+        $window.history.back();
 
-    $scope.isActive = function(route) {
-        return route === $location.path();
+        $timeout(function(){
+            $rootScope.isBack = false;
+        }, 400);
+
     };
-    */
 
 });

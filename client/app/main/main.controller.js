@@ -4,6 +4,7 @@ angular.module('foosenshaftApp')
 .controller('MainCtrl', function ($scope, $http, socket, navbar, localStorage) {
 
     navbar.setTitle('Foosenshaft');
+    navbar.setShowBackButton(false);
 
     $scope.awesomeThings = [];
 

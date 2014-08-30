@@ -15,24 +15,44 @@
 
 	&.ng-enter,
 	&.ng-leave {
-		transition:all ease-in-out 300ms;
+		transition: $regular-transition;
 	}
 
 	&.ng-leave{
 		opacity: 1;
-		top: 0;
+		transform: translate3d(0,0,0);
 	}
 	&.ng-leave.ng-leave-active{
 		opacity: 0;
-		top: $navbar-height;
+		transform: translate3d(0, $navbar-height, 0);
 	}
 	&.ng-enter {
 		opacity: 0;
-		top: -$navbar-height;
+		transform: translate3d(0, -$navbar-height, 0);
 	}
 	&.ng-enter.ng-enter-active {
 		opacity: 1;
-		top: 0px;
+		transform: translate3d(0,0,0);
 	}
 
+}
+.back{
+	.navbarTitle{
+		&.ng-leave{
+			opacity: 1;
+			transform: translate3d(0,0,0);
+		}
+		&.ng-leave.ng-leave-active{
+			opacity: 0;
+			transform: translate3d(0, -$navbar-height, 0);
+		}
+		&.ng-enter {
+			opacity: 0;
+			transform: translate3d(0, $navbar-height, 0);
+		}
+		&.ng-enter.ng-enter-active {
+			opacity: 1;
+			transform: translate3d(0,0,0);
+		}
+	}
 }
