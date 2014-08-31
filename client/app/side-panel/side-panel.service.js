@@ -9,21 +9,8 @@ angular.module('foosenshaftApp')
         return panelData;
     };
 
-    this.setPanel = function(action){
-        switch (action) {
-        case 'actionProfile':
-            panelData = {
-                title: 'Profile',
-                panel: 'profile'
-            };
-            break;
-        case 'actionHelp':
-            panelData = {
-                title: 'Help',
-                panel: 'help'
-            };
-            break;
-        }
+    this.setPanel = function(data){
+        panelData = data;
     };
 
     this.openPanel = function(){

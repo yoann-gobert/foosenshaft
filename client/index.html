@@ -35,12 +35,12 @@
         <div class="side-panel-wrapper">
             <section class="side-panel" ng-controller="SidePanelCtrl">
                 <header class="side-panel-header">
-                    <h2 class="side-panel-title">{{ panelData.title }}</h2>
                     <div class="side-panel-close-wrapper">
                         <button class="btn" ng-click="closePanel()" title="Close Panel">
                             <span class="fa fa-times"></span>
                         </button>
                     </div>
+                    <h2 class="side-panel-title">{{ panelData.title }}</h2>
                 </header>
                 <div class="content-side-panel">
                     <div ng-include="'app/profile/profile.html'" ng-show="panelData.panel === 'profile'"></div>

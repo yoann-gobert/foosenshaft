@@ -10,7 +10,7 @@
         </div>
         <div class="navbar-right-container">
             <div class="btn-container" ng-repeat="button in actionButtons">
-                <button ng-click="navbarAction(button.action)" title="{{ button.title }}" class="btn">
+                <button ng-click="navbarAction(button.panelData)" title="{{ button.title }}" class="btn">
                     <span class="fa {{ button.icon }}"></span>
                 </button>
             </div>

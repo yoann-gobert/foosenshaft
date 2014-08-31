@@ -22,8 +22,8 @@ angular.module('foosenshaftApp')
         }, 400);
     };
 
-    $scope.navbarAction = function(action){
-        sidePanel.setPanel(action);
+    $scope.navbarAction = function(panelData){
+        sidePanel.setPanel(panelData);
         sidePanel.openPanel();
     };
 

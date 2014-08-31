@@ -8,11 +8,17 @@ angular.module('foosenshaftApp')
     navbar.setActionButtons([{
         title: 'Help',
         icon: 'fa-question',
-        action: 'actionHelp'
+        panelData: {
+            title: 'Help',
+            panel: 'help'
+        }
     },{
         title: 'Profile',
         icon: 'fa-bars',
-        action: 'actionProfile'
+        panelData: {
+            title: 'Profile',
+            panel: 'profile'
+        }
     }]);
 
     $scope.awesomeThings = [];
