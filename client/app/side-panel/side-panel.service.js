@@ -7,7 +7,7 @@ angular.module('foosenshaftApp')
 
     this.getPanelData = function(){
         return panelData;
-    }
+    };
 
     this.setPanel = function(action){
         switch (action) {
@@ -15,13 +15,13 @@ angular.module('foosenshaftApp')
             panelData = {
                 title: 'Profile',
                 panel: 'profile'
-            }
+            };
             break;
         case 'actionHelp':
             panelData = {
                 title: 'Help',
                 panel: 'help'
-            }
+            };
             break;
         }
     };

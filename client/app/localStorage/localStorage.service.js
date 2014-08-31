@@ -6,6 +6,8 @@ angular.module('foosenshaftApp')
     //source: https://developer.mozilla.org/en/docs/Web/Guide/API/DOM/Storage
     if (!window.localStorage) {
         Object.defineProperty(window, 'localStorage', (function () {
+            /* global escape */
+            /* global unescape */
             var aKeys = [], oStorage = {};
             Object.defineProperty(oStorage, 'getItem', {
                 value: function (sKey) {
@@ -93,7 +95,7 @@ angular.module('foosenshaftApp')
 
     this.setItem = function(key, value){
         var data = value;
-        if(typeof(value) === 'object' || typeof(value) === 'array'){
+        if(typeof(value) === 'object'){
             data = JSON.stringify(value);
         }
         return localStorage.setItem(key, data);
@@ -105,6 +107,6 @@ angular.module('foosenshaftApp')
 
     this.clear = function(){
         localStorage.clear();
-    }
+    };
 
 });

@@ -9,7 +9,7 @@ angular.module('foosenshaftApp')
 
     this.getTitle = function(){
         return title;
-    }
+    };
 
     this.setTitle = function(newTitle){
         if(newTitle !== title){
@@ -20,7 +20,7 @@ angular.module('foosenshaftApp')
 
     this.getShowBackButton = function(){
         return showBackButton;
-    }
+    };
 
     this.setShowBackButton = function(show){
         if(show !== showBackButton){

@@ -5,7 +5,7 @@ angular.module('foosenshaftApp')
     return {
         templateUrl: 'components/navbarTitle/navbarTitle.html',
         restrict: 'A',
-        link: function (scope, element) {
+        link: function (scope) {
 
             $rootScope.$on('newTitle', function(){
                 //replace the title
